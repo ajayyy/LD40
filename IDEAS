@@ -23,7 +23,9 @@ tetris style game, the more additions you make, the harder it gets
 
 top down shooter game where each guy you kill drops tetris pieces that you must attatch to yourself and not get too many
 
-enable magnet, only can shoo when you get the same color in a row. maximum size to be
+enable magnet, only can shoot when you get the same color in a row. maximum size to be
+
+when too big, big explosion happens, add force away on everything
 
 
 you are a blob of tetris pieces and you must try to move around and attah to stuff
