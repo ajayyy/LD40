@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
 	}
 	
-	void Update () {
+	void FixedUpdate () {
         body.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed;
 	}
 }

@@ -10,7 +10,7 @@ public class ShapeScript : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
 	}
 	
-	void Update () {
+	void FixedUpdate () {
         GameController gameController = GameController.instance;
 
         if (Input.GetKey(KeyCode.Space)) {
