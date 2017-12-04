@@ -14,7 +14,7 @@ public class ShapeScript : MonoBehaviour {
         GameController gameController = GameController.instance;
 
         if (Input.GetKey(KeyCode.Space)) {
-            body.AddForce(MathHelper.RadianToVector2(MathHelper.GetRadians(transform.position - gameController.player.transform.position) - Mathf.PI) * 10000);
+            body.AddForce(MathHelper.RadianToVector2(MathHelper.GetRadians(transform.position - gameController.player.transform.position) - Mathf.PI) * 100);
         }
     }
 }
