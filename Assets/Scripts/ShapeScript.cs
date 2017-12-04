@@ -15,20 +15,14 @@ public class ShapeScript : MonoBehaviour {
     float lastMove;
     float lastRowChange; //last movement downward
 
+    bool collided = false; //current colliding with something
+
 	void Start () {
         body = GetComponent<Rigidbody2D>();
 	}
 	
 	void FixedUpdate () {
         GameController gameController = GameController.instance;
-
-        if (Input.GetKey(KeyCode.Space)) {
-            body.AddForce(MathHelper.RadianToVector2(MathHelper.GetRadians(transform.position - gameController.player.transform.position) - Mathf.PI) * 100);
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift)) {
-            body.AddForce(MathHelper.RadianToVector2(MathHelper.GetRadians(transform.position - gameController.player.transform.position) - Mathf.PI) * 10);
-        }
 
         if (attached) {
             transform.position = gameController.player.transform.position + new Vector3(column - 0.5f, gameController.player.GetComponent<SpriteRenderer>().bounds.size.y/2 + row);
@@ -37,7 +31,7 @@ public class ShapeScript : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.E) && Time.time - lastMove >= 0.2f) {
                 column++;
-                if(column > 4) {
+                if (column > 4) {
                     column = 4;
                 }
                 lastMove = Time.time;
@@ -57,11 +51,28 @@ public class ShapeScript : MonoBehaviour {
                 lastMove = Time.time;
             }
 
-            if(Time.time - lastRowChange >= 0.5f && row > 1) {
+            //if(Time.time - lastRowChange >= 0.5f && row > 1) {
+            if (Time.time - lastRowChange >= 0.5f && !collided) {
                 row--;
                 lastRowChange = Time.time;
             }
 
+        }else {
+
+            if (Input.GetKey(KeyCode.Space)) {
+                body.AddForce(MathHelper.RadianToVector2(MathHelper.GetRadians(transform.position - gameController.player.transform.position) - Mathf.PI) * 100);
+            }
+
+            if (Input.GetKey(KeyCode.LeftShift)) {
+                body.AddForce(MathHelper.RadianToVector2(MathHelper.GetRadians(transform.position - gameController.player.transform.position) - Mathf.PI) * 10);
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        collided = true;
+        if(collider.gameObject.tag == "Shape") {
+            //transform.position = collider.transform.position - new Vector3(0, 1);
         }
     }
 }
