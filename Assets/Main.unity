@@ -429,8 +429,8 @@ GameObject:
   - component: {fileID: 1287629113}
   - component: {fileID: 1287629112}
   - component: {fileID: 1287629114}
-  - component: {fileID: 1287629111}
   - component: {fileID: 1287629115}
+  - component: {fileID: 1287629111}
   m_Layer: 0
   m_Name: J
   m_TagString: Shape
@@ -487,8 +487,8 @@ PolygonCollider2D:
       - {x: -1.5, y: -1}
       - {x: 1.5, y: -1}
       - {x: 1.5018797, y: 0.019732475}
-      - {x: -0.5161615, y: 0.010393143}
-      - {x: -0.50587606, y: 0.99812126}
+      - {x: -0.54509187, y: 0.010393143}
+      - {x: -0.5284714, y: 0.99902534}
 --- !u!212 &1287629113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -573,8 +573,8 @@ PolygonCollider2D:
       - {x: -1.5, y: -1}
       - {x: 1.5, y: -1}
       - {x: 1.5018797, y: 0.019732475}
-      - {x: -0.5161615, y: 0.010393143}
-      - {x: -0.50587606, y: 0.99812126}
+      - {x: -0.54509187, y: 0.010393143}
+      - {x: -0.5284714, y: 0.99902534}
 --- !u!1001 &1554544103
 Prefab:
   m_ObjectHideFlags: 0
