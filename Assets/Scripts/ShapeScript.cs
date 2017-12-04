@@ -29,7 +29,7 @@ public class ShapeScript : MonoBehaviour {
 
             transform.localEulerAngles = new Vector3(0, 0, rotation);
 
-            if (Input.GetKey(KeyCode.E) && Time.time - lastMove >= 0.2f) {
+            if (Input.GetKey(KeyCode.E) && Time.time - lastMove >= 0.2f && !collided) {
                 column++;
                 if (column > 4) {
                     column = 4;
@@ -37,7 +37,7 @@ public class ShapeScript : MonoBehaviour {
                 lastMove = Time.time;
             }
 
-            if (Input.GetKey(KeyCode.Q) && Time.time - lastMove >= 0.2f) {
+            if (Input.GetKey(KeyCode.Q) && Time.time - lastMove >= 0.2f && !collided) {
                 column--;
                 if (column < -3) {
                     column = -3;
@@ -45,7 +45,7 @@ public class ShapeScript : MonoBehaviour {
                 lastMove = Time.time;
             }
 
-            if (Input.GetKey(KeyCode.R) && Time.time - lastMove >= 0.2f) {
+            if (Input.GetKey(KeyCode.R) && Time.time - lastMove >= 0.2f && !collided) {
                 rotation += 90;
                 rotation %= 360;
                 lastMove = Time.time;
