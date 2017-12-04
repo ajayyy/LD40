@@ -9,7 +9,7 @@ public class ShapeScript : MonoBehaviour {
     public bool attached = false;
 
     int column;
-    int row = 15;
+    int row = 10;
     float rotation;
 
     float lastMove;
@@ -74,6 +74,8 @@ public class ShapeScript : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.tag == "Circle") return;
+
         collided = true;
         if(collider.gameObject.tag == "Shape") {
             //transform.position = collider.transform.position - new Vector3(0, 1);
