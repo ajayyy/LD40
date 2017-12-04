@@ -40,6 +40,7 @@ public class PlayerScript : MonoBehaviour {
 
         CapMaxSpeed();
         MovementFriction(); //because this object is kinematic so it has no normal friction
+
     }
 
     void CapMaxSpeed() {
