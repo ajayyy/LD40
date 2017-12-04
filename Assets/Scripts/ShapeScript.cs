@@ -9,7 +9,7 @@ public class ShapeScript : MonoBehaviour {
     public bool attached = false;
 
     int column;
-    int row = 10;
+    int row = 15;
     float rotation;
 
     float lastMove;
@@ -31,17 +31,23 @@ public class ShapeScript : MonoBehaviour {
         }
 
         if (attached) {
-            transform.position = gameController.player.transform.position + new Vector3(column, gameController.player.GetComponent<SpriteRenderer>().bounds.size.y/2 + row);
+            transform.position = gameController.player.transform.position + new Vector3(column - 0.5f, gameController.player.GetComponent<SpriteRenderer>().bounds.size.y/2 + row);
 
             transform.localEulerAngles = new Vector3(0, 0, rotation);
 
             if (Input.GetKey(KeyCode.E) && Time.time - lastMove >= 0.2f) {
                 column++;
+                if(column > 4) {
+                    column = 4;
+                }
                 lastMove = Time.time;
             }
 
             if (Input.GetKey(KeyCode.Q) && Time.time - lastMove >= 0.2f) {
                 column--;
+                if (column < -3) {
+                    column = -3;
+                }
                 lastMove = Time.time;
             }
 
