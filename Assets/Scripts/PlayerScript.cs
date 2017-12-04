@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour {
     float maxSpeed = 15;
 
     //movement friction
-    float friction = 0.35f;
+    float friction = 0.5f;
 
     Rigidbody2D body;
 
