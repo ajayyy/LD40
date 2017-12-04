@@ -6,7 +6,10 @@ public class PlayerScript : MonoBehaviour {
 
     float speed = 1;
 
-    float maxSpeed = 25;
+    float maxSpeed = 15;
+
+    //movement friction
+    float friction = 0.35f;
 
     Rigidbody2D body;
 
@@ -33,8 +36,10 @@ public class PlayerScript : MonoBehaviour {
 
         //body.velocity = movement * speed;
         body.velocity += movement * speed;
-        CapMaxSpeed();
         //body.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed;
+
+        CapMaxSpeed();
+        MovementFriction(); //because this object is kinematic so it has no normal friction
     }
 
     void CapMaxSpeed() {
@@ -44,5 +49,35 @@ public class PlayerScript : MonoBehaviour {
             float angle = MathHelper.GetRadians(body.velocity);
             body.velocity = MathHelper.RadianToVector2(angle) * maxSpeed;
         }
+    }
+
+    void MovementFriction() {
+
+        //movement friction (because doing it manually gives more control than using physics materials)
+
+        float angle = MathHelper.GetRadians(body.velocity);
+
+        double xspeed = body.velocity.x;
+        double yspeed = body.velocity.y;
+
+ 		double xchange = - (Mathf.Cos(angle) * friction);
+ 		double ychange = - (Mathf.Sin(angle) * friction);
+ 		
+ 		//if they are going to overshoot the goal, set it to zero (the goal), and don't move it
+ 		if(xchange > 0 && xspeed + xchange > 0){
+ 			xspeed = 0;
+		}else if(xchange < 0 && xspeed + xchange < 0){
+ 			xspeed = 0;
+ 		}
+ 		if(ychange > 0 && yspeed + ychange > 0){
+ 			yspeed = 0;
+ 		}else if(ychange < 0 && yspeed + ychange < 0){
+ 			yspeed = 0;
+ 		}
+ 		
+ 		if(xspeed != 0) xspeed += xchange;
+ 		if(yspeed != 0) yspeed += ychange;
+
+        body.velocity = new Vector2((float) xspeed, (float) yspeed);
     }
 }
