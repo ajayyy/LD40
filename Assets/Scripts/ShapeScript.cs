@@ -9,9 +9,11 @@ public class ShapeScript : MonoBehaviour {
     public bool attached = false;
 
     int column;
+    int row = 10;
     float rotation;
 
     float lastMove;
+    float lastRowChange; //last movement downward
 
 	void Start () {
         body = GetComponent<Rigidbody2D>();
@@ -29,7 +31,7 @@ public class ShapeScript : MonoBehaviour {
         }
 
         if (attached) {
-            transform.position = gameController.player.transform.position + new Vector3(column, gameController.player.GetComponent<SpriteRenderer>().bounds.size.y);
+            transform.position = gameController.player.transform.position + new Vector3(column, gameController.player.GetComponent<SpriteRenderer>().bounds.size.y/2 + row);
 
             transform.localEulerAngles = new Vector3(0, 0, rotation);
 
@@ -48,7 +50,11 @@ public class ShapeScript : MonoBehaviour {
                 rotation %= 360;
                 lastMove = Time.time;
             }
-            print(transform.localEulerAngles);
+
+            if(Time.time - lastRowChange >= 0.5f && row > 1) {
+                row--;
+                lastRowChange = Time.time;
+            }
 
         }
     }
