@@ -25,7 +25,7 @@ public class ShapeScript : MonoBehaviour {
 	void FixedUpdate () {
         GameController gameController = GameController.instance;
 
-        if (attached) {
+        if (attached && gameController.queues[(int) (direction / 90)][0] == this) {
             float rotationOffset = 0;
             if(rotation == 90 || rotation == 270) {
                 rotationOffset = -0.5f;
@@ -97,8 +97,14 @@ public class ShapeScript : MonoBehaviour {
             print(shortestDirection);
             direction = shortestDirection;
 
+            GameController.instance.queues[(int)(direction / 90)].Add(this);
+
             return;
         } else if (collider.gameObject.tag == "Circle") return;
+
+        if (!collided) {
+            GameController.instance.queues[(int)(direction / 90)].Remove(this);
+        }
 
         collided = true;
         if(collider.gameObject.tag == "Shape") {
