@@ -25,7 +25,11 @@ public class ShapeScript : MonoBehaviour {
         GameController gameController = GameController.instance;
 
         if (attached) {
-            transform.position = gameController.player.transform.position + new Vector3(column - 0.5f, gameController.player.GetComponent<SpriteRenderer>().bounds.size.y/2 + row);
+            float rotationOffset = 0;
+            if(rotation == 90 || rotation == 270) {
+                rotationOffset = -0.5f;
+            }
+            transform.position = gameController.player.transform.position + new Vector3(column - 0.5f, gameController.player.GetComponent<SpriteRenderer>().bounds.size.y/2 + row + rotationOffset);
 
             transform.localEulerAngles = new Vector3(0, 0, rotation);
 
