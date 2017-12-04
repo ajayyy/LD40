@@ -74,7 +74,14 @@ public class ShapeScript : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.gameObject.tag == "Circle") return;
+        if (collider.gameObject.tag == "Circle") {
+
+            attached = true;
+            GetComponent<Rigidbody2D>().isKinematic = true;
+            transform.parent = GameController.instance.player.transform;
+
+            return;
+        }
 
         collided = true;
         if(collider.gameObject.tag == "Shape") {
