@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212936375507322724}
   - component: {fileID: 60681423552587318}
   - component: {fileID: 50796062828236862}
+  - component: {fileID: 114313072921581408}
   m_Layer: 0
   m_Name: Z
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1130862620602660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 112.0038, y: 116.7378, z: 0}
+  m_LocalPosition: {x: -35.5, y: -0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +79,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 96, y: 64}
+    oldSize: {x: 3, y: 2}
     newSize: {x: 96, y: 64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -86,14 +87,25 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -48, y: 32}
-      - {x: -48, y: 0.028305054}
-      - {x: -15.963821, y: 0.027580261}
-      - {x: -15.971703, y: -31.97297}
-      - {x: 48, y: -32}
-      - {x: 48, y: -0.033798218}
-      - {x: 16.015274, y: 0.0076141357}
-      - {x: 16.075226, y: 31.999992}
+    - - {x: -1.5, y: 1}
+      - {x: -1.5, y: -0.024059296}
+      - {x: -0.52898884, y: -0.01960516}
+      - {x: -0.52072334, y: -1}
+      - {x: 1.5, y: -1}
+      - {x: 1.5, y: 0.017514229}
+      - {x: 0.51848984, y: 0.018816948}
+      - {x: 0.5255356, y: 0.9983959}
+--- !u!114 &114313072921581408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1130862620602660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c9f197f2240ce4b9e3a7783f8718b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212936375507322724
 SpriteRenderer:
   m_ObjectHideFlags: 1
