@@ -10,6 +10,7 @@ public class ShapeScript : MonoBehaviour {
 
     int column;
     int row = 10;
+    float direction;
     float rotation;
 
     float lastMove;
@@ -29,7 +30,8 @@ public class ShapeScript : MonoBehaviour {
             if(rotation == 90 || rotation == 270) {
                 rotationOffset = -0.5f;
             }
-            transform.position = gameController.player.transform.position + new Vector3(column - 0.5f, gameController.player.GetComponent<SpriteRenderer>().bounds.size.y/2 + row + rotationOffset);
+            //print(direction);
+            transform.position = gameController.player.transform.position + MathHelper.DegreeToVector3(direction) * (gameController.player.GetComponent<SpriteRenderer>().bounds.size.y/2 + row + rotationOffset) + MathHelper.DegreeToVector3(direction-90) * (column - 0.5f);
 
             transform.localEulerAngles = new Vector3(0, 0, rotation);
 
@@ -74,14 +76,29 @@ public class ShapeScript : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.gameObject.tag == "Circle") {
+        if (collider.gameObject.tag == "Circle" && !attached) {
 
             attached = true;
             GetComponent<Rigidbody2D>().isKinematic = true;
             transform.parent = GameController.instance.player.transform;
 
+            float shortestDistance = -1;
+            float shortestDirection = 0;
+
+            for (float f = 0; f < 360; f += 90) {
+                float distance = Vector3.Distance(transform.position, GameController.instance.player.transform.position + (MathHelper.DegreeToVector3(f) * (GetComponent<SpriteRenderer>().bounds.size.x / 2)));
+                //print(transform.position + "     :      " + GameController.instance.player.transform.position + (MathHelper.DegreeToVector3(f) * (GetComponent<SpriteRenderer>().bounds.size.x / 2)));
+                print(distance);
+                if (distance < shortestDistance || shortestDistance == -1) {
+                    shortestDistance = distance;
+                    shortestDirection = f;
+                }
+            }
+            print(shortestDirection);
+            direction = shortestDirection;
+
             return;
-        }
+        } else if (collider.gameObject.tag == "Circle") return;
 
         collided = true;
         if(collider.gameObject.tag == "Shape") {
