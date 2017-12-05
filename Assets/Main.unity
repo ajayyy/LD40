@@ -274,6 +274,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attached: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
 --- !u!50 &65237275
 Rigidbody2D:
   serializedVersion: 4
@@ -414,7 +417,7 @@ GameObject:
   - component: {fileID: 250949859}
   - component: {fileID: 250949860}
   - component: {fileID: 250949861}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Circle
   m_Icon: {fileID: 0}
@@ -679,6 +682,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attached: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
 --- !u!50 &1208502255
 Rigidbody2D:
   serializedVersion: 4
@@ -951,6 +957,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attached: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
 --- !u!60 &1287629115
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1016,6 +1025,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attached: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
 --- !u!50 &1350278222
 Rigidbody2D:
   serializedVersion: 4
@@ -1195,6 +1207,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attached: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
 --- !u!50 &1387226301
 Rigidbody2D:
   serializedVersion: 4
@@ -1386,6 +1401,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attached: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
 --- !u!50 &1704760196
 Rigidbody2D:
   serializedVersion: 4
@@ -1559,6 +1577,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attached: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
 --- !u!50 &1726637848
 Rigidbody2D:
   serializedVersion: 4
