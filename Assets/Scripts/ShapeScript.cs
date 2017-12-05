@@ -30,7 +30,7 @@ public class ShapeScript : MonoBehaviour {
 	void FixedUpdate () {
         GameController gameController = GameController.instance;
 
-        if (attached && (gameController.queues[(int)(direction / 90)].Count == 0 || gameController.queues[(int) (direction / 90)][0] == this)) {
+        if (attached && (gameController.queues[(int)(direction / 90)].Count == 0 || gameController.queues[(int) (direction / 90)][0] == this) && !collided) {
             float rotationOffset = 0;
             if(rotation == 90 || rotation == 270) {
                 rotationOffset = -0.5f;
@@ -45,7 +45,7 @@ public class ShapeScript : MonoBehaviour {
                 height = middle;
             }
 
-            transform.position = gameController.player.transform.position + MathHelper.DegreeToVector3(direction) * (gameController.player.GetComponent<SpriteRenderer>().bounds.size.y/2 + row + width/2) + MathHelper.DegreeToVector3(direction-90) * (column - 0.5f);
+            transform.localPosition = MathHelper.DegreeToVector3(direction) * (gameController.player.GetComponent<SpriteRenderer>().bounds.size.y/2f + row + height/2f) + MathHelper.DegreeToVector3(direction-90) * (column - 0.5f);
 
             transform.localEulerAngles = new Vector3(0, 0, rotation);
 
@@ -78,22 +78,23 @@ public class ShapeScript : MonoBehaviour {
 
                 Vector3 dir = MathHelper.DegreeToVector3(direction + 180);
 
-                RaycastHit2D hit = Physics2D.Raycast(transform.position + (dir * height/2), dir, Mathf.Infinity, layerMask, 0);
-                if (hit.collider != null) {
-                    if(hit.distance < 1) {
-                        if (!collided) {
-                            GameController.instance.queues[(int)(direction / 90)].Remove(this);
-                        }
-                        collided = true;
+                //RaycastHit2D hit = Physics2D.Raycast(transform.position + (dir * height/2), dir, Mathf.Infinity, layerMask, 0);
+                //if (hit.collider != null) {
+                //    print(hit.distance);
+                //    if(hit.distance < 0.5f) {
+                //        if (!collided) {
+                //            GameController.instance.queues[(int)(direction / 90)].Remove(this);
+                //        }
+                //        collided = true;
 
-                        Collider[] colliders = GetComponents<Collider>();
-                        foreach(Collider collider in colliders) {
-                            if (!collider.isTrigger) {
-                                collider.enabled = false;
-                            }
-                        }
-                    }
-                }
+                //        Collider[] colliders = GetComponents<Collider>();
+                //        foreach(Collider collider in colliders) {
+                //            if (!collider.isTrigger) {
+                //                collider.enabled = false;
+                //            }
+                //        }
+                //    }
+                //}
 
                 lastRowChange = Time.time;
             }
@@ -120,7 +121,7 @@ public class ShapeScript : MonoBehaviour {
             float shortestDistance = -1;
             float shortestDirection = 0;
 
-            for (float f = 0; f < 360; f += 90) {
+            for (float f = 90; f < 360; f += 180) {
                 float distance = Vector3.Distance(transform.position, GameController.instance.player.transform.position + (MathHelper.DegreeToVector3(f) * (GetComponent<SpriteRenderer>().bounds.size.x / 2)));
                 //print(transform.position + "     :      " + GameController.instance.player.transform.position + (MathHelper.DegreeToVector3(f) * (GetComponent<SpriteRenderer>().bounds.size.x / 2)));
                 print(distance);
@@ -137,11 +138,15 @@ public class ShapeScript : MonoBehaviour {
             return;
         } else if (collider.gameObject.tag == "Circle") return;
 
-        //if (!collided) {
-        //    GameController.instance.queues[(int)(direction / 90)].Remove(this);
-        //}
+        if (!collided) {
+            GameController.instance.queues[(int)(direction / 90)].Remove(this);
+            GameController.instance.score += Random.Range(7, 28);
 
-        //collided = true;
+            GameController.instance.scoreText.text = "Score: " + GameController.instance.score;
+        }
+
+        collided = true;
+
         if (collider.gameObject.tag == "Shape") {
             //transform.position = collider.transform.position - new Vector3(0, 1);
         }
