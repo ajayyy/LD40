@@ -18,14 +18,17 @@ public class ShapeScript : MonoBehaviour {
 
     bool collided = false; //current colliding with something
 
+    SpriteRenderer spriteRenderer;
+
 	void Start () {
         body = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	void FixedUpdate () {
         GameController gameController = GameController.instance;
 
-        if (attached && gameController.queues[(int) (direction / 90)][0] == this) {
+        if (attached && (gameController.queues[(int)(direction / 90)].Count == 0 || gameController.queues[(int) (direction / 90)][0] == this)) {
             float rotationOffset = 0;
             if(rotation == 90 || rotation == 270) {
                 rotationOffset = -0.5f;
@@ -45,9 +48,6 @@ public class ShapeScript : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.Q) && Time.time - lastMove >= 0.2f && !collided) {
                 column--;
-                if (column < -3) {
-                    column = -3;
-                }
                 lastMove = Time.time;
             }
 
@@ -60,6 +60,10 @@ public class ShapeScript : MonoBehaviour {
             //if(Time.time - lastRowChange >= 0.5f && row > 1) {
             if (Time.time - lastRowChange >= 0.5f && !collided) {
                 row--;
+                //if (row + (Mathf.Sin(rotation) * (spriteRenderer.bounds.size.y / 2)) < 0) {
+                //    row++;
+                //    collided = true;
+                //}
                 lastRowChange = Time.time;
             }
 
@@ -107,7 +111,7 @@ public class ShapeScript : MonoBehaviour {
         }
 
         collided = true;
-        if(collider.gameObject.tag == "Shape") {
+        if (collider.gameObject.tag == "Shape") {
             //transform.position = collider.transform.position - new Vector3(0, 1);
         }
     }
